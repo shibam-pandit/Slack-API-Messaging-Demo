@@ -1,4 +1,4 @@
-# Slack Internship Assignment
+# Slack Messaging Using API Demo
 
 ## Overview
 This project implements Slack API messaging functionalities in a free Slack workspace. It uses token-based authentication and supports the following operations in a `#test-channel`:
