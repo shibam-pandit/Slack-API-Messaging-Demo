@@ -11,13 +11,13 @@ This project implements Slack API messaging functionalities in a free Slack work
 ## Setup Instructions
 1. **Create a Free Slack Workspace**:
    - Sign up at [slack.com](https://slack.com) with a new email.
-   - Create a public channel named `#test-channel`.
+   - Create a public channel (e.g., `#test-channel`) where messages will be posted.
 
 2. **Create a Slack App**:
    - Go to [api.slack.com/apps](https://api.slack.com/apps) and create a new app.
    - Add bot token scopes: `channels:read`, `chat:write`, `chat:write.public`, `channels:history`.
    - Install the app to your workspace and copy the Bot User OAuth Token.
-   - Invite the bot to `#test-channel` using `/invite @InternshipBot`.
+   - Invite the bot to your channel using `/invite @InternshipBot`.
 
 3. **Set Up Environment**:
    - Install Node.js and npm.
@@ -35,38 +35,27 @@ This project implements Slack API messaging functionalities in a free Slack work
      ```bash
      node app.js
      ```
-   - Test endpoints using a REST client like Postman:
-     - Send: `POST http://localhost:3000/send-message` with JSON body `{"text": "Hello world"}`
-     - Schedule: `POST http://localhost:3000/schedule-message` with JSON body `{"delay": 300, "text": "Scheduled message"}`
-     - Retrieve: `GET http://localhost:3000/retrieve-messages`
-     - Edit: `PUT http://localhost:3000/edit-message` with JSON body `{"ts": "timestamp", "updatedText": "Updated text"}`
-     - Delete: `DELETE http://localhost:3000/delete-message?ts=timestamp`
+   - Test endpoints using the included Postman collection (see Testing section) or any REST client.
 
 ## Testing
-- All operations were tested in a free Slack workspace's `#test-channel` to ensure no impact on real users.
-- Using a workspace for this implementation provides a realistic testing environment with all the required API functionalities while being easily accessible and configurable for demonstration purposes.
+- All operations were tested in a free Slack workspace to ensure no impact on real users.
+- Using a workspace provides a realistic environment with full API support while being easily accessible for demonstration purposes.
+- **[Postman Collection]**: Import the included [`postman_collection.json`](./Slack%20Api%20Messaging%20demo.postman_collection.json) file into Postman to quickly test all endpoints with pre-configured requests.
 
 ## API Endpoints
-1. **Send Message**: `POST /send-message`
-   - Request Body: `{"text": "Your message"}`
 
-2. **Schedule Message**: `POST /schedule-message`
-   - Request Body: `{"delay": seconds, "text": "Your scheduled message"}`
-   - Delay is specified in seconds from current time
-
-3. **Retrieve Messages**: `GET /retrieve-messages`
-   - Returns the last 10 messages in the channel
-
-4. **Edit Message**: `PUT /edit-message`
-   - Request Body: `{"ts": "timestamp", "updatedText": "New message content"}`
-
-5. **Delete Message**: `DELETE /delete-message?ts=timestamp`
-   - Query Parameter: `ts` - timestamp of message to delete
+| Endpoint | Method | Request Body / Parameters | Description |
+|----------|--------|---------------------------|-------------|
+| `/send-message` | POST | `{"text": "Your message"}` | Send an immediate message to the channel |
+| `/schedule-message` | POST | `{"delay": seconds, "text": "Your message"}` | Schedule a message for future delivery |
+| `/retrieve-messages` | GET | N/A | Returns the last 10 messages from the channel |
+| `/edit-message` | PUT | `{"ts": "timestamp", "updatedText": "New content"}` | Edit an existing message |
+| `/delete-message` | DELETE | Query: `ts=timestamp` | Delete a message by its timestamp |
 
 ## Resources
 - [Slack API Docs](https://api.slack.com/apis)
 - [Messaging Guide](https://api.slack.com/messaging)
 
 ## Notes
-- The implementation uses token-based authentication for simplicity, as allowed by the assignment.
+- Token-based authentication is used for simplicity and aligns with the assignment's requirements.
 - The free Slack workspace provides an ideal environment for demonstrating these messaging operations with full API support.

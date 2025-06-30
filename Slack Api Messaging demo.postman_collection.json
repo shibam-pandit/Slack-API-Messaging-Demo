@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "c0013199-974a-4c1f-abd8-8eac426a1227",
+		"name": "Slack Api Messaging demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38038527"
+	},
+	"item": [
+		{
+			"name": "Send instant message",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"First Instant Message\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/send-message",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"send-message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Schedule a message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"You have recieved this message 2 minutes after I have send it.\",\r\n    \"delay\": 120\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/schedule-message",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"schedule-message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve message",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/retrieve-messages",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"retrieve-messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Message",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ts\": \"1751300648.590679\",\r\n    \"updatedText\": \"Edited Message\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/edit-message",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"edit-message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete message",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/delete-message?ts=1751300648.590679",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"delete-message"
+					],
+					"query": [
+						{
+							"key": "ts",
+							"value": "1751300648.590679"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:3000",
+			"type": "default"
+		}
+	]
+}
